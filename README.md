@@ -30,7 +30,7 @@ the `"extends"` field. Custom rules can then be enabled under `"rules"`.
 
 ## Rules
 
-#### enum-member-name
+### enum-member-name
 
 Ensures `enum` members follow a consistent naming convention.
 
@@ -44,7 +44,7 @@ This rule accepts a single string option. If no option is given,
 | "caps-case"   |            | CAPS_CASE   |
 | "snake-case"  |            | snake_case  |
 
-#### enum-name
+### enum-name
 
 Ensures `enum` identifiers follow a consistent naming convention.
 
