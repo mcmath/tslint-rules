@@ -1,0 +1,7 @@
+export enum PascalCaseEnum { }
+            ~~~~~~~~~~~~~~       [Enum names must be in snake_case]
+export enum camelCaseEnum { }
+            ~~~~~~~~~~~~~        [Enum names must be in snake_case]
+export enum CAPS_CASE_ENUM { }
+            ~~~~~~~~~~~~~~       [Enum names must be in snake_case]
+export enum snake_case_enum { }

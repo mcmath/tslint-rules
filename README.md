@@ -44,6 +44,20 @@ This rule accepts a single string option. If no option is given,
 | "caps-case"   |            | CAPS_CASE   |
 | "snake-case"  |            | snake_case  |
 
+#### enum-name
+
+Ensures `enum` identifiers follow a consistent naming convention.
+
+This rule accepts a single string option. If no option is given,
+"pascal-case" is assumed.
+
+| Option        | Attributes | Example     |
+|:--------------|:-----------|:------------|
+| "pascal-case" | default    | PascalCase  |
+| "camel-case"  |            | camelCase   |
+| "caps-case"   |            | CAPS_CASE   |
+| "snake-case"  |            | snake_case  |
+
 ## License
 
 Copyright &copy; 2017 Akim McMath. Licensed under the [MIT License][license].
