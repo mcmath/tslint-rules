@@ -1,0 +1,35 @@
+enum PascalCaseGlobalEnum { }
+
+enum camelCaseGlobalEnum { }
+     ~~~~~~~~~~~~~~~~~~~         [Enum names must be in PascalCase]
+enum CAPS_CASE_GLOBAL_ENUM { }
+     ~~~~~~~~~~~~~~~~~~~~~       [Enum names must be in PascalCase]
+enum snake_case_global_enum { }
+     ~~~~~~~~~~~~~~~~~~~~~~      [Enum names must be in PascalCase]
+
+
+declare module "some-module" {
+
+  export enum PascalCaseModuleEnum { }
+
+  export enum camelCaseModuleEnum { }
+              ~~~~~~~~~~~~~~~~~~~         [Enum names must be in PascalCase]
+  export enum CAPS_CASE_MODULE_ENUM { }
+              ~~~~~~~~~~~~~~~~~~~~~       [Enum names must be in PascalCase]
+  export enum snake_case_module_enum { }
+              ~~~~~~~~~~~~~~~~~~~~~~      [Enum names must be in PascalCase]
+
+  export namespace Namespace {
+
+    enum PascalCaseEnum { }
+
+    enum camelCaseEnum { }
+         ~~~~~~~~~~~~~        [Enum names must be in PascalCase]
+    enum CAPS_CASE_ENUM { }
+         ~~~~~~~~~~~~~~       [Enum names must be in PascalCase]
+    enum snake_case_enum { }
+         ~~~~~~~~~~~~~~~      [Enum names must be in PascalCase]
+
+  }
+
+}

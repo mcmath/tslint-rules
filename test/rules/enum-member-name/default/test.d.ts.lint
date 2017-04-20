@@ -12,8 +12,8 @@ declare module "some-module" {
     ~~~~~~~~~  [Enum members must be in PascalCase]
   }
 
-  export namespaceA {
-    namespaceB {
+  export namespace NamespaceA {
+    namespace NamespaceB {
       enum NestedModuleLetterCase {
         PascalCase,
         camelCase
