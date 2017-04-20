@@ -1,6 +1,6 @@
 {
   "name": "@mcmath/tslint-rules",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Custom rules for TSLint",
   "main": "index.json",
   "keywords": [
