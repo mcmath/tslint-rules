@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "enum-member-name": [true, "caps-case"]
+  }
+}

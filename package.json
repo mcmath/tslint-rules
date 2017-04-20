@@ -1,0 +1,46 @@
+{
+  "name": "@mcmath/tslint-rules",
+  "version": "0.0.0",
+  "description": "Custom rules for TSLint",
+  "main": "index.json",
+  "keywords": [
+    "tslint",
+    "tslint-rules",
+    "linter",
+    "typescript"
+  ],
+  "scripts": {
+    "build": "rimraf rules && tsc",
+    "test": "rimraf rules && tsc && tslint src && tslint -r rules --test \"test/rules/*/*\" && jsonlint index.json -q"
+  },
+  "engines": {
+    "node": ">=4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Akim McMath <akim.elijah.mcmath@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcmath/tslint-rules.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mcmath/tslint-rules/issues"
+  },
+  "homepage": "https://github.com/mcmath/tslint-rules#readme",
+  "peerDependencies": {
+    "typescript": "2",
+    "tslint": "5"
+  },
+  "dependencies": {
+    "tslib": "^1.6.0"
+  },
+  "devDependencies": {
+    "@mcmath/tslint-config": "^1.0.2",
+    "jsonlint": "^1.6.2",
+    "rimraf": "^2.6.1",
+    "tslint": "^5.1.0",
+    "typescript": "^2.2.2"
+  }
+}

@@ -1,0 +1,26 @@
+enum LetterCase {
+  PascalCase,
+  ~~~~~~~~~~        [Enum members must be in snake_case]
+  PASCALCase,
+  ~~~~~~~~~~        [Enum members must be in snake_case]
+  camelCase,
+  ~~~~~~~~~         [Enum members must be in snake_case]
+  camelcase,
+  CAPS_CASE,
+  ~~~~~~~~~         [Enum members must be in snake_case]
+  CAPSCASE,
+  ~~~~~~~~          [Enum members must be in snake_case]
+  _BAD_CAPS_CASE,
+  ~~~~~~~~~~~~~~    [Enum members must be in snake_case]
+  BAD_CAPS_CASE_,
+  ~~~~~~~~~~~~~~    [Enum members must be in snake_case]
+  snake_case,
+  snakecase,
+  _bad_snake_case,
+  ~~~~~~~~~~~~~~~   [Enum members must be in snake_case]
+  bad_snake_case_,
+  ~~~~~~~~~~~~~~~   [Enum members must be in snake_case]
+  X,
+  ~                 [Enum members must be in snake_case]
+  x
+}
