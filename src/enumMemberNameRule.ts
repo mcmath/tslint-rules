@@ -1,33 +1,50 @@
-import { EnumDeclaration, EnumMember, SourceFile } from "typescript";
-import { Rules, RuleWalker, RuleFailure } from "tslint";
+import { EnumDeclaration, EnumMember, Node, SourceFile, SyntaxKind, forEachChild } from "typescript";
+import { AbstractWalker, Rules, RuleFailure } from "tslint";
 import { ENUM_MEMBER_NAME_OPTIONS } from "./enumMemberNameSchema";
 
 export class Rule extends Rules.AbstractRule {
 
   public apply(sourceFile: SourceFile): RuleFailure[] {
-    return this.applyWithWalker(new EnumMembersWalker(sourceFile, this.getOptions()));
+    return this.applyWithWalker(new EnumMemberNameWalker(sourceFile, this.ruleName, this.ruleArguments));
   }
 
 }
 
-class EnumMembersWalker extends RuleWalker {
+class EnumMemberNameWalker extends AbstractWalker<Set<string>> {
 
-  public visitEnumDeclaration(node: EnumDeclaration): void {
-    node.members.forEach(this.validateEnumMember, this);
-    super.visitEnumDeclaration(node);
+  public constructor(sourceFile: SourceFile, ruleName: string, ruleArguments: any[]) {
+    super(sourceFile, ruleName, new Set(ruleArguments.map(String)));
+    this.visitNode = this.visitNode.bind(this);
   }
 
-  private validateEnumMember(node: EnumMember): void {
-    this.validateEnumMemberName(node, node.name.getText());
+  public walk(sourceFile: SourceFile): void {
+    forEachChild(sourceFile, this.visitNode);
   }
 
-  private validateEnumMemberName(node: EnumMember, name: string): void {
+  private visitNode(node: Node): void {
+    if (node.kind === SyntaxKind.EnumDeclaration) {
+      this.visitEnumDeclaration(node as EnumDeclaration);
+    }
+  }
+
+  private visitEnumDeclaration(node: EnumDeclaration): void {
+    node.members.forEach(this.visitEnumMember, this);
+  }
+
+  private visitEnumMember(node: EnumMember): void {
+    this.checkEnumMemberName(node);
+  }
+
+  private checkEnumMemberName(node: EnumMember): void {
+    const name = node.name.getText();
+
     for (const { option, description, validate } of ENUM_MEMBER_NAME_OPTIONS) {
-      if (this.hasOption(option)) {
+      if (this.options.has(option)) {
         if (!validate(name)) this.registerFailure(node, description);
         return;
       }
     }
+
     if (!ENUM_MEMBER_NAME_OPTIONS[0].validate(name)) {
       this.registerFailure(node, ENUM_MEMBER_NAME_OPTIONS[0].description);
     }
