@@ -39,16 +39,30 @@ class EnumMemberNameWalker extends AbstractWalker<Set<string>> {
 
   public constructor(sourceFile: SourceFile, ruleName: string, ruleArguments: any[]) {
     super(sourceFile, ruleName, new Set(ruleArguments.map(String)));
-    this.visitNode = this.visitNode.bind(this);
+    this.visitNode = this.visitNode.bind(this); // Bind for use as `forEachChild()` callback
   }
 
   public walk(sourceFile: SourceFile): void {
-    forEachChild(sourceFile, this.visitNode);
+    this.visitChilden(sourceFile);
+  }
+
+  private visitChilden(node: Node): void {
+    forEachChild(node, this.visitNode);
   }
 
   private visitNode(node: Node): void {
-    if (node.kind === SyntaxKind.EnumDeclaration) {
-      this.visitEnumDeclaration(node as EnumDeclaration);
+    switch (node.kind) {
+      case SyntaxKind.EnumDeclaration:
+        this.visitEnumDeclaration(node as EnumDeclaration);
+        break;
+      case SyntaxKind.Block:
+      case SyntaxKind.ModuleDeclaration:
+      case SyntaxKind.ModuleBlock:
+      case SyntaxKind.NamespaceExportDeclaration:
+        this.visitChilden(node);
+        break;
+      default:
+        // Nothing to check for this node or its descendants
     }
   }
 

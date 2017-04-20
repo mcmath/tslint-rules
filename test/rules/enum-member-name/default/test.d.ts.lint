@@ -1,0 +1,25 @@
+enum GlobalLetterCase {
+  PascalCase,
+  camelCase
+  ~~~~~~~~~  [Enum members must be in PascalCase]
+}
+
+declare module "some-module" {
+
+  export enum ModuleLetterCase {
+    PascalCase,
+    camelCase
+    ~~~~~~~~~  [Enum members must be in PascalCase]
+  }
+
+  export namespaceA {
+    namespaceB {
+      enum NestedModuleLetterCase {
+        PascalCase,
+        camelCase
+        ~~~~~~~~~  [Enum members must be in PascalCase]
+      }
+    }
+  }
+
+}

@@ -1,3 +1,25 @@
+declare global {
+
+  enum GlobalLetterCase {
+    PascalCase,
+    camelCase
+    ~~~~~~~~~  [Enum members must be in PascalCase]
+  }
+
+  namespace NamespaceA {
+    namespace NamespaceB {
+
+      enum NestedLetterCase {
+        PascalCase,
+        camelCase
+        ~~~~~~~~~  [Enum members must be in PascalCase]
+      }
+
+    }
+  }
+
+}
+
 enum LetterCase {
   PascalCase,
   PASCALCase,
