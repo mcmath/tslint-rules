@@ -15,23 +15,19 @@ export class Rule extends Rules.AbstractRule {
     test: (name: string) => /^[A-Z][0-9A-Za-z]*$/.test(name) && (name.length === 1 || /[a-z]/.test(name))
   };
 
-  public static readonly CASE_OPTIONS: CaseOption[] = [
-    {
-      option: "camel-case",
-      description: "camelCase",
-      test: (name: string) => /^[a-z][0-9A-Za-z]*$/.test(name)
-    },
-    {
-      option: "caps-case",
-      description: "CAPS_CASE",
-      test: (name: string) => /^[A-Z][0-9A-Z_]*[0-9A-Z]$|^[A-Z]$/.test(name)
-    },
-    {
-      option: "snake-case",
-      description: "snake_case",
-      test: (name: string) => /^[a-z][0-9a-z_]*[0-9a-z]$|^[a-z]$/.test(name)
-    }
-  ];
+  public static readonly CASE_OPTIONS: CaseOption[] = [{
+    option: "camel-case",
+    description: "camelCase",
+    test: (name: string) => /^[a-z][0-9A-Za-z]*$/.test(name)
+  }, {
+    option: "caps-case",
+    description: "CAPS_CASE",
+    test: (name: string) => /^[A-Z][0-9A-Z_]*[0-9A-Z]$|^[A-Z]$/.test(name)
+  }, {
+    option: "snake-case",
+    description: "snake_case",
+    test: (name: string) => /^[a-z][0-9a-z_]*[0-9a-z]$|^[a-z]$/.test(name)
+  }];
 
   public apply(sourceFile: SourceFile): RuleFailure[] {
     return this.applyWithWalker(new EnumMemberNameWalker(sourceFile, this.ruleName, this.ruleArguments));
